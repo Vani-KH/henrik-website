@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-burgundy: #7b2335;
+  --color-burgundy-deep: #5c1a28;
+  --color-cream: #faf8f5;
+
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+}
