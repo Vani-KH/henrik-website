@@ -10,60 +10,76 @@ const photos = [
   { src: '/images/gallery-6.jpg', alt: 'Ferdig hylle — helhetlig' },
 ]
 
-function GalleryCard({ photo, index }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-
+function Img({ src, alt, className = '' }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-      className="group relative aspect-square overflow-hidden bg-stone-200 cursor-pointer"
-    >
+    <div className={`group relative overflow-hidden bg-stone-800 ${className}`}>
       <img
-        src={photo.src}
-        alt={photo.alt}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+        src={src}
+        alt={alt}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         onError={(e) => { e.currentTarget.style.display = 'none' }}
       />
-      <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-500" />
-      <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
-        <span className="text-white text-[10px] uppercase tracking-[0.2em] font-semibold">
-          {photo.alt}
-        </span>
+      <div className="absolute inset-0 bg-stone-950/0 group-hover:bg-stone-950/40 transition-colors duration-500" />
+      <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+        <span className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-semibold">{alt}</span>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Gallery() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const headerRef = useRef(null)
+  const gridRef   = useRef(null)
+  const headerInView = useInView(headerRef, { once: true, margin: '-60px' })
+  const gridInView   = useInView(gridRef,   { once: true, margin: '-60px' })
 
   return (
-    <section id="produkter" className="py-28 px-8 md:px-20 bg-cream">
+    <section id="produkter" className="bg-stone-950 pt-24 pb-28 px-8 md:px-20">
+
       <motion.div
-        ref={ref}
+        ref={headerRef}
         initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        animate={headerInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-16"
+        className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between"
       >
-        <span className="text-burgundy text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block">
-          Kolleksjonen
-        </span>
-        <h2 className="text-4xl md:text-6xl font-black uppercase text-stone-900 leading-[0.95] tracking-tight">
-          Håndlaget<br />med omhu
-        </h2>
+        <div>
+          <span className="text-burgundy text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block">
+            Kolleksjonen
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-[0.95] tracking-tight">
+            Håndlaget<br />med omhu
+          </h2>
+        </div>
+        <p className="text-stone-500 text-sm font-light max-w-xs mt-6 md:mt-0 leading-relaxed">
+          Hvert stykke er et enkelt stykke — skreddersydd for deg og ditt rom.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-        {photos.map((photo, i) => (
-          <GalleryCard key={i} photo={photo} index={i} />
-        ))}
-      </div>
+      <motion.div
+        ref={gridRef}
+        initial={{ opacity: 0, y: 40 }}
+        animate={gridInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="space-y-2"
+      >
+        {/* Row 1: full-width landscape */}
+        <Img src={photos[0].src} alt={photos[0].alt} className="w-full aspect-video" />
+
+        {/* Row 2: two side-by-side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <Img src={photos[1].src} alt={photos[1].alt} className="aspect-square" />
+          <Img src={photos[2].src} alt={photos[2].alt} className="aspect-square" />
+        </div>
+
+        {/* Row 3: three equal */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <Img src={photos[3].src} alt={photos[3].alt} className="aspect-square" />
+          <Img src={photos[4].src} alt={photos[4].alt} className="aspect-square" />
+          <Img src={photos[5].src} alt={photos[5].alt} className="aspect-square" />
+        </div>
+      </motion.div>
+
     </section>
   )
 }

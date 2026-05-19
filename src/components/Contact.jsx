@@ -18,24 +18,20 @@ function AnimateIn({ children, delay = 0, className = '' }) {
 }
 
 const inputClass =
-  'w-full bg-transparent border-b border-stone-300 py-4 text-stone-900 placeholder-stone-400 text-sm focus:outline-none focus:border-burgundy transition-colors duration-300'
+  'w-full bg-transparent border-b border-stone-700 py-4 text-white placeholder-stone-600 text-sm focus:outline-none focus:border-burgundy transition-colors duration-300 font-sans'
 
 export default function Contact() {
   const [form, setForm] = useState({ navn: '', epost: '', melding: '' })
   const [sent, setSent] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSent(true)
-  }
+  const handleSubmit = (e) => { e.preventDefault(); setSent(true) }
 
   return (
-    <section id="kontakt" className="py-28 px-8 md:px-20 bg-cream">
+    <section id="kontakt" className="bg-stone-950 py-28 px-8 md:px-20 border-t border-stone-800">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-6xl">
 
-        {/* Left — info */}
+        {/* Left */}
         <div>
           <AnimateIn delay={0.1}>
             <span className="text-burgundy text-[10px] font-bold uppercase tracking-[0.3em] mb-6 block">
@@ -43,7 +39,7 @@ export default function Contact() {
             </span>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <h2 className="text-4xl md:text-5xl font-black uppercase text-stone-900 leading-[0.95] tracking-tight mb-10">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white leading-[0.95] tracking-tight mb-10">
               La oss snakke<br />om prosjektet<br />ditt.
             </h2>
           </AnimateIn>
@@ -57,13 +53,13 @@ export default function Contact() {
             </p>
           </AnimateIn>
           <AnimateIn delay={0.5}>
-            <div className="space-y-3 text-sm text-stone-500">
+            <div className="space-y-4 text-sm text-stone-500">
               <p>
-                <span className="font-semibold text-stone-700 uppercase tracking-wider text-xs">E-post</span><br />
+                <span className="font-semibold text-stone-400 uppercase tracking-wider text-xs block mb-1">E-post</span>
                 henrik@henrikmodul.no
               </p>
               <p>
-                <span className="font-semibold text-stone-700 uppercase tracking-wider text-xs">Sted</span><br />
+                <span className="font-semibold text-stone-400 uppercase tracking-wider text-xs block mb-1">Sted</span>
                 Trondheim, Norge
               </p>
             </div>
@@ -75,7 +71,7 @@ export default function Contact() {
           {sent ? (
             <div className="py-20">
               <div className="w-10 h-0.5 bg-burgundy mb-6" />
-              <p className="text-2xl font-black uppercase text-stone-900 tracking-tight">
+              <p className="text-2xl font-black uppercase text-white tracking-tight">
                 Takk for<br />meldingen.
               </p>
               <p className="text-stone-500 mt-4 font-light">Henrik tar kontakt snart.</p>
@@ -83,37 +79,13 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="w-full space-y-8 pt-2">
               <div>
-                <input
-                  type="text"
-                  name="navn"
-                  placeholder="Ditt navn"
-                  value={form.navn}
-                  onChange={handleChange}
-                  required
-                  className={inputClass}
-                />
+                <input type="text"  name="navn"    placeholder="Ditt navn"                    value={form.navn}    onChange={handleChange} required className={inputClass} />
               </div>
               <div>
-                <input
-                  type="email"
-                  name="epost"
-                  placeholder="E-postadresse"
-                  value={form.epost}
-                  onChange={handleChange}
-                  required
-                  className={inputClass}
-                />
+                <input type="email" name="epost"   placeholder="E-postadresse"                value={form.epost}   onChange={handleChange} required className={inputClass} />
               </div>
               <div>
-                <textarea
-                  name="melding"
-                  placeholder="Fortell om prosjektet ditt…"
-                  value={form.melding}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className={`${inputClass} resize-none`}
-                />
+                <textarea           name="melding" placeholder="Fortell om prosjektet ditt…" value={form.melding} onChange={handleChange} required rows={5} className={`${inputClass} resize-none`} />
               </div>
               <button
                 type="submit"
