@@ -1,13 +1,15 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+const base = import.meta.env.BASE_URL
+
 const photos = [
-  { src: '/images/gallery-1.jpg', alt: 'Vinyl record storage unit' },
-  { src: '/images/gallery-2.jpg', alt: 'Håndlaget hylle i eik' },
-  { src: '/images/gallery-3.jpg', alt: 'Dovetail joint detalj' },
-  { src: '/images/gallery-4.jpg', alt: 'Modulært sidebord' },
-  { src: '/images/gallery-5.jpg', alt: 'Studiooppsett med vinyl' },
-  { src: '/images/gallery-6.jpg', alt: 'Ferdig hylle — helhetlig' },
+  { src: `${base}images/gallery-1.jpg`, alt: 'Vinyl record storage unit' },
+  { src: `${base}images/gallery-2.jpg`, alt: 'Håndlaget hylle i eik' },
+  { src: `${base}images/gallery-3.jpg`, alt: 'Dovetail joint detalj' },
+  { src: `${base}images/gallery-4.jpg`, alt: 'Modulært sidebord' },
+  { src: `${base}images/gallery-5.jpg`, alt: 'Studiooppsett med vinyl' },
+  { src: `${base}images/gallery-6.jpg`, alt: 'Ferdig hylle — helhetlig' },
 ]
 
 function Img({ src, alt, className = '' }) {
