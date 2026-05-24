@@ -12,14 +12,14 @@ export default function Hero() {
       />
 
       {/* Dim overlay */}
-      <div className="absolute inset-0 bg-stone-950/50" />
+      <div className="absolute inset-0 bg-stone-950/65" />
 
       {/* Logo — centered */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <img
           src={`${base}images/logo.png`}
           alt="Henrik Modul"
-          className="w-64 md:w-96 h-auto object-contain"
+          className="w-[80vw] md:w-[60vw] lg:w-[50vw] max-w-4xl h-auto object-contain"
         />
       </div>
     </section>
