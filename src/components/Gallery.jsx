@@ -3,12 +3,10 @@ import { useState } from 'react'
 const base = import.meta.env.BASE_URL
 
 const photos = [
-  `${base}images/gallery-1.jpg`,
-  `${base}images/gallery-2.jpg`,
-  `${base}images/gallery-3.jpg`,
-  `${base}images/gallery-4.jpg`,
-  `${base}images/gallery-5.jpg`,
-  `${base}images/gallery-6.jpg`,
+  `${base}images/Gallery/gallery-1.jpg`,
+  `${base}images/Gallery/gallery-2.jpg`,
+  `${base}images/Gallery/gallery-3.jpg`,
+  `${base}images/Gallery/gallery-4.jpg`,
 ]
 
 export default function Gallery() {
@@ -21,7 +19,7 @@ export default function Gallery() {
         Produktet
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {photos.map((src, i) => (
           <button
             key={i}
@@ -32,7 +30,6 @@ export default function Gallery() {
               src={src}
               alt={`Produkt ${i + 1}`}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              onError={(e) => { e.currentTarget.parentElement.style.display = 'none' }}
             />
           </button>
         ))}
