@@ -1,103 +1,45 @@
-import { useState, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useState } from 'react'
 
-function AnimateIn({ children, delay = 0, className = '' }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-const inputClass =
-  'w-full bg-transparent border-b border-stone-700 py-4 text-white placeholder-stone-600 text-sm focus:outline-none focus:border-burgundy transition-colors duration-300 font-sans'
+const fieldClass = 'w-full bg-transparent border-b border-[#6E2127] py-3 text-[#6E2127] placeholder-[#6E2127]/50 text-sm font-light focus:outline-none'
 
 export default function Contact() {
-  const [form, setForm] = useState({ navn: '', epost: '', melding: '' })
+  const [form, setForm] = useState({ navn: '', telefon: '', epost: '', melding: '' })
   const [sent, setSent] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
   const handleSubmit = (e) => { e.preventDefault(); setSent(true) }
 
   return (
-    <section id="kontakt" className="bg-stone-950 py-28 px-8 md:px-20 border-t border-stone-800">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-6xl">
+    <section id="kontakt" className="bg-white py-20 px-8 md:px-16">
 
-        {/* Left */}
-        <div>
-          <AnimateIn delay={0.1}>
-            <span className="text-burgundy text-[10px] font-bold uppercase tracking-[0.3em] mb-6 block">
-              Kontakt
-            </span>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <h2 className="text-4xl md:text-5xl font-black uppercase text-white leading-[0.95] tracking-tight mb-10">
-              La oss snakke<br />om prosjektet<br />ditt.
-            </h2>
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <div className="w-12 h-0.5 bg-burgundy mb-10" />
-          </AnimateIn>
-          <AnimateIn delay={0.4}>
-            <p className="text-stone-500 text-base font-light leading-relaxed mb-10 max-w-sm">
-              Har du et spesifikt møbel i tankene, eller ønsker du å bestille en av eksisterende
-              design? Ta gjerne kontakt — Henrik svarer personlig.
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.5}>
-            <div className="space-y-4 text-sm text-stone-500">
-              <p>
-                <span className="font-semibold text-stone-400 uppercase tracking-wider text-xs block mb-1">E-post</span>
-                henrik@henrikmodul.no
-              </p>
-              <p>
-                <span className="font-semibold text-stone-400 uppercase tracking-wider text-xs block mb-1">Sted</span>
-                Trondheim, Norge
-              </p>
-            </div>
-          </AnimateIn>
-        </div>
+      <h2 className="text-2xl md:text-3xl italic font-normal text-[#6E2127] mb-12">
+        Kontakt
+      </h2>
 
-        {/* Right — form */}
-        <AnimateIn delay={0.3} className="flex items-start">
-          {sent ? (
-            <div className="py-20">
-              <div className="w-10 h-0.5 bg-burgundy mb-6" />
-              <p className="text-2xl font-black uppercase text-white tracking-tight">
-                Takk for<br />meldingen.
-              </p>
-              <p className="text-stone-500 mt-4 font-light">Henrik tar kontakt snart.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="w-full space-y-8 pt-2">
-              <div>
-                <input type="text"  name="navn"    placeholder="Ditt navn"                    value={form.navn}    onChange={handleChange} required className={inputClass} />
-              </div>
-              <div>
-                <input type="email" name="epost"   placeholder="E-postadresse"                value={form.epost}   onChange={handleChange} required className={inputClass} />
-              </div>
-              <div>
-                <textarea           name="melding" placeholder="Fortell om prosjektet ditt…" value={form.melding} onChange={handleChange} required rows={5} className={`${inputClass} resize-none`} />
-              </div>
-              <button
-                type="submit"
-                className="bg-burgundy text-white text-xs font-bold uppercase tracking-[0.2em] px-10 py-4 hover:bg-burgundy-deep transition-colors duration-300"
-              >
-                Send melding
-              </button>
-            </form>
-          )}
-        </AnimateIn>
+      {sent ? (
+        <p className="text-[#6E2127] text-sm font-light">Takk for meldingen. Henrik tar kontakt snart.</p>
+      ) : (
+        <form onSubmit={handleSubmit} className="max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <input type="text"  name="navn"    placeholder="Navn"    value={form.navn}    onChange={handleChange} required className={fieldClass} />
+          </div>
+          <div>
+            <input type="tel"   name="telefon" placeholder="Telefon" value={form.telefon} onChange={handleChange} className={fieldClass} />
+          </div>
+          <div className="md:col-span-2">
+            <input type="email" name="epost"   placeholder="E-post"  value={form.epost}   onChange={handleChange} required className={fieldClass} />
+          </div>
+          <div className="md:col-span-2">
+            <textarea name="melding" placeholder="Melding" value={form.melding} onChange={handleChange} required rows={5} className={`${fieldClass} resize-none`} />
+          </div>
+          <div className="md:col-span-2">
+            <button type="submit" className="text-[#6E2127] text-sm font-light border-b border-[#6E2127] pb-0.5 hover:opacity-60 transition-opacity">
+              Send
+            </button>
+          </div>
+        </form>
+      )}
 
-      </div>
     </section>
   )
 }
