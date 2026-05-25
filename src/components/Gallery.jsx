@@ -13,9 +13,9 @@ export default function Gallery() {
   const [enlarged, setEnlarged] = useState(null)
 
   return (
-    <section id="produkter" className="bg-white py-20 px-8 md:px-16">
+    <section id="produkter" className="py-20 px-8 md:px-16">
 
-      <h2 className="text-2xl md:text-3xl italic font-normal text-[#6E2127] mb-12">
+      <h2 className="text-2xl md:text-3xl italic font-normal mb-12" style={{ color: 'inherit' }}>
         Produktet
       </h2>
 
@@ -24,7 +24,7 @@ export default function Gallery() {
           <button
             key={i}
             onClick={() => setEnlarged(src)}
-            className="aspect-square overflow-hidden bg-gray-100 focus:outline-none"
+            className="aspect-square overflow-hidden focus:outline-none bg-white/10"
           >
             <img
               src={src}
@@ -35,17 +35,12 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Lightbox */}
       {enlarged && (
         <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8"
           onClick={() => setEnlarged(null)}
         >
-          <img
-            src={enlarged}
-            alt="Forstørret"
-            className="max-w-full max-h-full object-contain"
-          />
+          <img src={enlarged} alt="Forstørret" className="max-w-full max-h-full object-contain" />
         </div>
       )}
 
