@@ -24,7 +24,7 @@ const imgWidth = {
 function Caption({ children }) {
   return (
     <span
-      className="text-[11px] leading-tight pb-1 shrink-0"
+      className="text-base md:text-lg leading-tight pb-1 shrink-0"
       style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 300, color: 'inherit' }}
     >
       {children}
@@ -35,9 +35,7 @@ function Caption({ children }) {
 function GalleryItem({ src, caption, align, onEnlarge }) {
   const isRight = align === 'right'
   return (
-    <div
-      className={`flex flex-col md:flex-row ${isRight ? 'md:flex-row-reverse' : ''} ${alignClass[align]} items-start md:items-end gap-3 md:gap-6`}
-    >
+    <div className={`flex flex-col md:flex-row ${isRight ? 'md:flex-row-reverse' : ''} ${alignClass[align]} items-start md:items-end gap-3 md:gap-8`}>
       <button
         onClick={onEnlarge}
         className={`${imgWidth[align]} focus:outline-none block shrink-0`}
@@ -54,22 +52,15 @@ export default function Gallery() {
   const [enlarged, setEnlarged] = useState(null)
 
   return (
-    <section id="produkter" className="py-20 px-8 md:px-16">
+    <section id="produkter" style={{ backgroundColor: '#6E2127', color: '#ffffff' }} className="py-20 px-8 md:px-16">
 
-      <h2
-        className="text-2xl md:text-3xl italic font-normal mb-20 md:mb-28"
-        style={{ color: 'inherit' }}
-      >
+      <h2 className="text-2xl md:text-3xl italic font-normal mb-20 md:mb-28">
         Produktet
       </h2>
 
       <div className="space-y-20 md:space-y-32">
         {items.map((item, i) => (
-          <GalleryItem
-            key={i}
-            {...item}
-            onEnlarge={() => setEnlarged(item.src)}
-          />
+          <GalleryItem key={i} {...item} onEnlarge={() => setEnlarged(item.src)} />
         ))}
       </div>
 

@@ -6,7 +6,7 @@ export default function Hero() {
 
       <div className="pt-4">
         <img
-          src={`${base}images/logo 2.png`}
+          src={`${base}images/logo 3.png`}
           alt="Hepsø Modul"
           className="h-12 md:h-16 w-auto object-contain"
           onError={(e) => { e.currentTarget.style.display = 'none' }}

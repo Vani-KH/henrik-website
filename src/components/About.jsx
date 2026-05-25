@@ -2,15 +2,15 @@ const base = import.meta.env.BASE_URL
 
 export default function About() {
   return (
-    <section id="om-oss" className="py-20 px-8 md:px-16">
+    <section id="om-oss" style={{ backgroundColor: '#ffffff', color: '#6E2127' }} className="py-20 px-8 md:px-16">
 
-      <h2 className="text-2xl md:text-3xl italic font-normal mb-10" style={{ color: 'inherit' }}>
+      <h2 className="text-2xl md:text-3xl italic font-normal mb-10">
         Om Hepsø Modul
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-        <div className="space-y-5 text-sm font-light leading-relaxed" style={{ color: 'inherit' }}>
+        <div className="space-y-5 text-sm font-light leading-relaxed">
           <p>
             Henrik Hepsø er en 28 år gammel snekker fra Trondheim med en lidenskap for vinyl og
             analogt lydbilde. Han spiller inn sin egen musikk på kassett, og tar med seg den
