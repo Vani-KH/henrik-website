@@ -14,13 +14,16 @@ export default function Hero() {
         />
       </div>
 
-      {/* Centered image */}
-      <div className="flex-1 flex items-center justify-center py-16">
+      {/* Centered image + caption */}
+      <div className="flex-1 flex flex-col items-center justify-center py-16 gap-4">
         <img
-          src={`${base}images/hero page image.png`}
+          src={`${base}images/midcentury.jpg`}
           alt="Hepsø Modul"
           className="max-w-xl w-full h-auto object-contain"
         />
+        <p className="text-[#6E2127] text-xs font-light tracking-wide text-center max-w-xl">
+          Et håndlaget designermøbel som oppbevarer dine vinyler
+        </p>
       </div>
 
     </section>
