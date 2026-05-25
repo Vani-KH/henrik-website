@@ -23,7 +23,7 @@ export default function About() {
         </div>
 
         <img
-          src={`${base}images/about photo.jpg`}
+          src={`${base}images/about photo.avif`}
           alt="Henrik Hepsø"
           className="w-full h-auto object-cover"
           onError={(e) => { e.currentTarget.style.display = 'none' }}
